@@ -1,0 +1,121 @@
+import { VerticalBox, Button, HorizontalBox, ScrollView, TextEdit, LineEdit } from "std-widgets.slint";
+import { RoundButton } from "roundbutton.slint";
+
+export component TextPad inherits Window {
+    in-out property <string> current_file : "Untitled";
+    in-out property <string> content : "";
+
+    in-out property <bool> is_saved : false;
+    in-out property <bool> display_mode : false; // true for dark mode, false for light mode
+
+    property <color> dark_mode_color : #222222;
+    property <color> light_mode_color : #FFFFFF;
+
+    width : 800px;
+    height : 600px;
+
+    title: "TextPad - " + root.current_file;
+
+    in-out property <string> save_button_text : "Save";
+    in-out property <string> save_as_button_text : "Save As";
+    in-out property <string> open_button_text : "Open";
+    in-out property <string> new_button_text : "New";
+
+    callback save_text();
+    callback save_as_text();
+    callback open_text();
+    callback new_text();
+
+    in-out property <string> encoding : "UTF-8";
+
+    in-out property <int> column : 0;
+    in-out property <int> line : 0;
+
+    in-out property <length> font_size : 16px;
+
+    VerticalBox {
+        width: 100%;
+        height: 100%;
+        spacing: 3px;
+        padding: 0;
+
+        HorizontalBox {
+            width: parent.width;
+            height: 24px;
+            spacing: 2px;
+
+            RoundButton {
+                icon_size: 24px;
+                icon: @image-url("../resource/icons/add-24.png");
+                clicked => {
+                    new_text();
+                }
+            }
+            RoundButton {
+                icon_size: 24px;
+                icon: @image-url("../resource/icons/open-24.png");
+
+                clicked => {
+                    open_text();
+                }
+            }
+            RoundButton {
+                icon_size: 24px;
+                icon: @image-url("../resource/icons/save-24.png");
+                clicked => {
+                    save_text();
+                }
+            }
+            RoundButton {
+                icon_size: 24px;
+                icon: @image-url("../resource/icons/save-as-24.png");
+
+                clicked => {
+                    save_as_text();
+                }
+            }
+        }
+
+        HorizontalBox {
+            ScrollView {
+                viewport-height: parent.height * 88%;
+                width: 35px;
+                vertical-scrollbar-policy: always-off;
+                horizontal-scrollbar-policy: always-off;
+
+                VerticalLayout {
+                    padding-top: 10px;
+                    spacing: 0;
+                    width: parent.width;
+                    height: 100%;
+
+                    in-out property <[int]> line_numbers_list : [1];
+                    in-out property <int> top_visible_line : 1;
+                    for index in line_numbers_list: Text {
+                        text: index;
+                        font-size: font_size;
+                        width: 35px;
+                        height: font_size + 4px;
+                    }
+                }
+            }
+            ScrollView {
+                viewport-height: parent.height * 88%;
+                viewport-width: parent.width;
+
+                TextEdit {
+                    width: 100%;
+                    height: 100%;
+
+                    text <=> root.content;
+                    font-size <=> root.font_size;
+
+                    wrap: word-wrap;
+                }
+            }
+        }
+        Text {
+            text: root.column + ":" + root.line + "    |    " + root.encoding;
+        }
+    }
+}
