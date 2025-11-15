@@ -5,6 +5,7 @@ export component TextPad inherits Window {
     width: 800px;
     height: 600px;
     background: is_dark_mode ? dark_bg_color : light_bg_color;
+    title: "TextPad - " + current_file;
 
     in-out property <string> current_file: "Untitled";
     in-out property <[string]> content: [];
@@ -22,10 +23,12 @@ export component TextPad inherits Window {
             height: 28px;
             background: is_dark_mode ? dark_bg_color : light_bg_color;
             HorizontalBox {
+                padding-left: 5px;
                 padding-top: 0px;
                 RoundButton {
                     image: @image-url("../resource/icons/add-24.png");
                     is_dark_mode <=> root.is_dark_mode;
+                    description: "New File";
                     width: 24px;
                     height: 24px;
                 }

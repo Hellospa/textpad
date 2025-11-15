@@ -4,7 +4,6 @@ mod muti_lang;
 mod text_editor;
 
 use slint;
-use slint::ToSharedString;
 use crate::muti_lang::MutiLang;
 
 fn main() -> Result<(), slint::PlatformError> {
