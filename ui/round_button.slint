@@ -36,30 +36,36 @@ export component RoundButton inherits Rectangle {
             }
         }
     }
-    Rectangle {
+    tip := Rectangle {
         property <bool> show-tooltip: touch-area.has-hover && parent.description != "";
+        
+        property <length> parent-stable-width: parent.width;
+        property <length> text-stable-width: desc-text.preferred-width + 5px;
+        property <length> text-stable-height: desc-text.preferred-height + 5px;
 
         visible: show-tooltip;
-        width: desc-text.width + 5px;
-        height: desc-text.height + 5px;
+        width: text-stable-width;
+        height: text-stable-height;
         border-radius: 4px;
         background: is_dark_mode ? dark_bg_color : light_bg_color;
-        x: (parent.width - self.width) / 2;
+        x: (parent-stable-width - text-stable-width) / 2;
         y: parent.height + 5px;
+        
         opacity: show-tooltip ? 1 : 0;
-        animate opacity {
-            duration: 200ms;
+        animate opacity, x, y, width, height {
+            duration: 250ms;
             easing: ease-in-out;
         }
 
         desc-text := Text {
             text: root.description;
-            font-size: 12px;
+            font-size: 14px;
             color: is_dark_mode ? light_bg_color : dark_bg_color;
             horizontal-alignment: center;
             vertical-alignment: center;
         }
     }
+
     touch-area := TouchArea {
         width: 100%;
         height: 100%;
