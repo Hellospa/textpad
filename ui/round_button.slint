@@ -16,7 +16,7 @@ export component RoundButton inherits Rectangle {
         height: 100%;
         source: image;
         image-fit: contain;
-        colorize: TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
+        colorize: TextPadTheme.is_dark_mode ? TextPadPalette.light_bg_color : TextPadPalette.dark_bg_color;
     }
     Timer {
         interval: 150ms;
@@ -26,7 +26,7 @@ export component RoundButton inherits Rectangle {
             if (touch-area.has-hover) {
                 parent.background = TextPadTheme.is_dark_mode ? TextPadPalette.hover_dark_bg_color : TextPadPalette.hover_light_bg_color;
             } else {
-                parent.background = TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
+                parent.background = TextPadTheme.is_dark_mode ? TextPadPalette.component_dark_bg_color : TextPadPalette.component_light_bg_color;
             }
         }
     }
@@ -41,7 +41,7 @@ export component RoundButton inherits Rectangle {
         width: text-stable-width;
         height: text-stable-height;
         border-radius: 4px;
-        background: TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
+        background: TextPadTheme.is_dark_mode ? TextPadPalette.component_dark_bg_color : TextPadPalette.component_light_bg_color;
         x: (parent-stable-width - text-stable-width) / 2;
         y: parent.height + 5px;
         
