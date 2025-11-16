@@ -1,17 +1,17 @@
 use std::io::Lines;
 
 pub struct TextEditor {
-    content: Vec<String>,
-    file_path: Option<String>,
+    pub content: Vec<String>,
+    pub file_path: Option<String>,
 
-    font_size: u32,
-    font_family: String,
+    pub font_size: u32,
+    pub font_family: String,
 
-    cursor_position: usize,
-    selection_start: Option<(usize, usize)>,
-    selection_end: Option<(usize, usize)>,
+    pub cursor_position: usize,
+    pub selection_start: Option<(usize, usize)>,
+    pub selection_end: Option<(usize, usize)>,
 
-    scroll_position: (usize, usize),
+    pub scroll_position: (usize, usize),
 }
 impl TextEditor {
     pub fn new() -> Self {

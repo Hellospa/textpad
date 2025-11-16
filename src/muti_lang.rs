@@ -1,6 +1,7 @@
 use std::fs;
 use std::collections::HashMap;
 
+#[derive(Debug, Clone)]
 pub struct MutiLang {
     current_lang: String,
     data: HashMap<String, HashMap<String, String>>,

@@ -2,3 +2,11 @@ save_button_text = "保存"
 open_button_text = "打开"
 save_as_button_text = "另存为"
 new_button_text = "新建"
+
+select_file_dialog_title = "选择一个文件"
+save_file_dialog_title = "保存文件"
+save_as_file_dialog_title = "另存为"
+open_file_dialog_title = "打开文件"
+
+this_window = "本窗口"
+new_window = "新窗口"

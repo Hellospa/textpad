@@ -2,3 +2,11 @@ save_button_text = "Save"
 open_button_text = "Open"
 save_as_button_text = "Save As"
 new_button_text = "New"
+
+select_file_dialog_title = "Select a file"
+save_file_dialog_title = "Save file"
+save_as_file_dialog_title = "Save file as"
+open_file_dialog_title = "Open file"
+
+this_window = "This Window"
+new_window = "New Window"

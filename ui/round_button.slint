@@ -1,7 +1,6 @@
 export component RoundButton inherits Rectangle {
     in property <image> image;
     in property <string> description : "";
-    
     in property <bool> is_dark_mode: false;
     
     in-out property <color> hover_light_bg_color: #d4d4d4;
@@ -12,7 +11,6 @@ export component RoundButton inherits Rectangle {
     callback clicked();
 
     border-radius: 4px;
-    background: is_dark_mode ? dark_bg_color : light_bg_color;
     animate background {
         duration: 100ms;
     }
