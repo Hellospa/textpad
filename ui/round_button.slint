@@ -1,12 +1,8 @@
+import { TextPadPalette, TextPadTheme } from "global_data.slint";
+
 export component RoundButton inherits Rectangle {
     in property <image> image;
     in property <string> description : "";
-    in property <bool> is_dark_mode: false;
-    
-    in-out property <color> hover_light_bg_color: #d4d4d4;
-    in-out property <color> hover_dark_bg_color: #444;
-    in-out property <color> light_bg_color: #ebebeb;
-    in-out property <color> dark_bg_color: #333;
 
     callback clicked();
 
@@ -20,7 +16,7 @@ export component RoundButton inherits Rectangle {
         height: 100%;
         source: image;
         image-fit: contain;
-        colorize: is_dark_mode ? light_bg_color : dark_bg_color;
+        colorize: TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
     }
     Timer {
         interval: 150ms;
@@ -28,9 +24,9 @@ export component RoundButton inherits Rectangle {
 
         triggered => {
             if (touch-area.has-hover) {
-                parent.background = is_dark_mode ? hover_dark_bg_color : hover_light_bg_color;
+                parent.background = TextPadTheme.is_dark_mode ? TextPadPalette.hover_dark_bg_color : TextPadPalette.hover_light_bg_color;
             } else {
-                parent.background = is_dark_mode ? dark_bg_color : light_bg_color;
+                parent.background = TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
             }
         }
     }
@@ -45,7 +41,7 @@ export component RoundButton inherits Rectangle {
         width: text-stable-width;
         height: text-stable-height;
         border-radius: 4px;
-        background: is_dark_mode ? dark_bg_color : light_bg_color;
+        background: TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
         x: (parent-stable-width - text-stable-width) / 2;
         y: parent.height + 5px;
         
@@ -58,7 +54,7 @@ export component RoundButton inherits Rectangle {
         desc-text := Text {
             text: root.description;
             font-size: 14px;
-            color: is_dark_mode ? light_bg_color : dark_bg_color;
+            color: TextPadTheme.is_dark_mode ? TextPadPalette.light_bg_color : TextPadPalette.dark_bg_color;
             horizontal-alignment: center;
             vertical-alignment: center;
         }

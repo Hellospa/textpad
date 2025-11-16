@@ -1,30 +1,16 @@
 import { VerticalBox, Button, HorizontalBox, ScrollView, TextEdit, LineEdit } from "std-widgets.slint";
 import { RoundButton } from "round_button.slint";
-
-global TextPadPalette {
-    in-out property <color> dark_bg_color: #222;
-    in-out property <color> light_bg_color: #fff;
-
-    in-out property <color> component_dark_bg_color: #333;
-    in-out property <color> component_light_bg_color: #ebebeb;
-
-    in-out property <color> hover_dark_bg_color: #444;
-    in-out property <color> hover_light_bg_color: #d4d4d4;
-
-    in-out property <color> text_dark_color: #ddd;
-    in-out property <color> text_light_color: #000;
-}
+import { TextPadPalette, TextPadTheme } from "global_data.slint";
 
 export component TextPad inherits Window {
     width: 800px;
     height: 600px;
-    background: is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
+    background: TextPadTheme.is_dark_mode ? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
     title: "TextPad - " + current_file;
     icon: @image-url("../resource/icons/text-editor-48.png");
 
     in-out property <string> current_file: "Untitled";
     in-out property <[string]> content: [""];
-    in-out property <bool> is_dark_mode: false;
 
     in-out property <[string]> opend_files_path: [];
     in-out property <int> current_file_index: -1;
@@ -39,20 +25,20 @@ export component TextPad inherits Window {
         Rectangle {
             width: 100%;
             height: 28px;
-            background: is_dark_mode ? TextPadPalette.component_dark_bg_color : TextPadPalette.component_light_bg_color;
+            background: TextPadTheme.is_dark_mode ? TextPadPalette.component_dark_bg_color : TextPadPalette.component_light_bg_color;
             HorizontalBox {
                 x: 5px;
                 padding-top: 0px;
                 RoundButton {
                     image: @image-url("../resource/icons/menu-24.png");
-                    is_dark_mode <=> root.is_dark_mode;
+                    is_dark_mode <=> TextPadTheme.is_dark_mode;
                     description: "Menu";
                     width: 24px;
                     height: 24px;
                 }
                 RoundButton {
                     image: @image-url("../resource/icons/add-24.png");
-                    is_dark_mode <=> root.is_dark_mode;
+                    is_dark_mode <=> TextPadTheme.is_dark_mode;
                     description: "New File";
                     width: 24px;
                     height: 24px;
@@ -62,7 +48,7 @@ export component TextPad inherits Window {
                 }
                 RoundButton {
                     image: @image-url("../resource/icons/open-24.png");
-                    is_dark_mode <=> root.is_dark_mode;
+                    is_dark_mode <=> TextPadTheme.is_dark_mode;
                     description: "Open File";
                     width: 24px;
                     height: 24px;
@@ -72,7 +58,7 @@ export component TextPad inherits Window {
                 }
                 RoundButton {
                     image: @image-url("../resource/icons/save-24.png");
-                    is_dark_mode <=> root.is_dark_mode;
+                    is_dark_mode <=> TextPadTheme.is_dark_mode;
                     description: "Save";
                     width: 24px;
                     height: 24px;
@@ -82,7 +68,7 @@ export component TextPad inherits Window {
                 }
                 RoundButton {
                     image: @image-url("../resource/icons/save-as-24.png");
-                    is_dark_mode <=> root.is_dark_mode;
+                    is_dark_mode <=> TextPadTheme.is_dark_mode;
                     description: "Save As";
                     width: 24px;
                     height: 24px;
@@ -104,7 +90,7 @@ export component TextPad inherits Window {
                 for line in content : Text {
                     text: line;
                     font-size: 14px;
-                    color: is_dark_mode ? TextPadPalette.text_dark_color : TextPadPalette.text_light_color;
+                    color: TextPadTheme.is_dark_mode ? TextPadPalette.text_dark_color : TextPadPalette.text_light_color;
                     wrap: no-wrap;
                     font-family: "Consolas, 'Courier New', monospace";
                 }
