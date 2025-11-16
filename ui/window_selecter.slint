@@ -1,7 +1,35 @@
-import { Button } from "std-widgets.slint";
+import { Button, VerticalBox } from "std-widgets.slint";
 import { TextPadPalette, TextPadTheme } from "global_data.slint";
 
 export component WindowSelecter inherits Window {
     in-out property <string> Text : "Select a window";
     out property <int> SelectedIndex : -1;
+
+    width: 200px;
+    height: 150px;
+    background: TextPadTheme.is_dark_mode? TextPadPalette.dark_bg_color : TextPadPalette.light_bg_color;
+    no-frame: true;
+
+    VerticalBox {
+        width: root.width - 4px;
+        height: root.height - 4px;
+        padding: 2px;
+        Rectangle {
+            x: root.width - 24px;
+            width: 24px;
+            height: 24px;
+            Image {
+                visible: true;
+                width: 100%;
+                height: 100%;
+                horizontal-alignment: ImageHorizontalAlignment.center;
+
+                source: @image-url("../resource/icons/close-24.png");
+                colorize: TextPadTheme.is_dark_mode? TextPadPalette.text_dark_color : TextPadPalette.text_light_color;
+            }
+        }
+        Text {
+
+        }
+    }
 }
